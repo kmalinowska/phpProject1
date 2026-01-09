@@ -15,6 +15,10 @@ var_dump(sum());
 var_dump(sum(5));
 var_dump(sum(5, 10, 15, 20, 25));
 
+$numbers = [1,2,3];
+//sum($numbers[0], $numbers[1] ...);
+var_dump(sum(...$numbers)); // take/pass explicit/each element from $numbers array and use it in sum function like different parameters of variadic arguments
+
 //this funcion don't return anything, we should use :void
 function introduceTeam(string $teamName, string ...$members):void {
     echo "Team: $teamName\n";
@@ -23,3 +27,7 @@ function introduceTeam(string $teamName, string ...$members):void {
 }
 
 introduceTeam("A team", "John", "Mr T");
+
+$members = ["Harry", "Johhny", "Joe"];
+introduceTeam("B Team", ...$members);
+introduceTeam("C Team", "John", "Mr T", ...$members);
