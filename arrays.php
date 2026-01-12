@@ -144,3 +144,69 @@ array(7) {
 var_dump($first, $second);
 //string(6) "orange" 1st element
 //string(5) "apple" 3rd element
+
+//calculate the intersection of two arrays //przecięcie dwóch tablic
+$set1 = [1,2,3,4,5];
+$set2 = [3,4,5,6,7];
+
+var_dump(
+    array_intersect($set1, $set2),
+    array_intersect($set2, $set1),
+    array_diff($set1, $set2), //function used to find the differences - all elements present in set1 but not present in set2
+    array_diff($set2, $set1)
+);
+
+//get all the keys and all the values of a specific associative array - produce new arrray
+$keys = array_keys($associativeArray);
+$values = array_values($associativeArray);
+var_dump($keys, $values);
+
+// uporządkowana tabela pod nagłówki, gdzie 1 litera jest wielka
+$keys = array_map(
+    fn($key) => ucfirst($key), array_keys($associativeArray)
+);  
+
+//check if key exists
+var_dump(
+    array_key_exists('name',
+    $associativeArray),  // bool(true)
+    in_array('John', $associativeArray) // bool(true)
+);
+
+//convert array to string, and string to array
+$fruitString = implode(', ', $fruits);
+$backToArray = explode(', ', $friutString);
+var_dump($friutString, $backToArray);
+
+//merge the arrays
+var_dump(
+    array_merge($set1, $set2),
+    $associativeArray,
+    array_merge($associativeArray, ['country' => 'DE'])
+);
+// original keys from first array will be overwritten if they are present in the second array!!!!
+var_dump(
+    array_unique(array_merge($set1, $set2))
+); //powstanie tabela bez zdublowanych wartości!!! 
+
+//jeśli chcemy tylko część tabeli, uzyjemy array_slice:
+var_dump(
+  array_slice($set1, 1, 3)  
+);
+/* 1 - starting index
+3 - amount of elements
+output:
+array(3) {
+  [0]=>
+  int(2)
+  [1]=>
+  int(3)
+  [2]=>
+  int(4)
+}
+*/
+
+//find something in array, ex. index of an element, use array_search
+var_dump(
+    array_search('banana', $fruits)
+); // int(1) ; index 1
